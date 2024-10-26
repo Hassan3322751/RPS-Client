@@ -1,0 +1,42 @@
+.home{
+    height: 100vh;
+    background: url('../../assets/bg_6.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 1100px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.24);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.1px);
+    -webkit-backdrop-filter: blur(3.1px);
+
+    .logo{
+        width: 100px;
+        color: white;
+
+        h1{
+            width: 100%;
+        }
+    }
+
+    .actions{
+        button{
+            display: block;
+            background-color: #690B99;
+            border: 2px solid #FEFE06;
+            margin: 5px 0px ;
+        }
+    }
+}

@@ -7,6 +7,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/room/:roomId' element={<Game_Page />} />
+        <Route path='/botRoom' element={<Game_Page />} />
       </Routes>
   );
 };

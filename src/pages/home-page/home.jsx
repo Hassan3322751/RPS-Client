@@ -12,6 +12,10 @@ const Home = () => {
         socket.emit("create:room", socket.id);
     };
 
+    const createBotRoom = () => {
+        navigate(`/botRoom`)
+    }
+
     useEffect(() => {
         socket.on("connect", () => {
             console.log("connected", socket.id);
@@ -34,6 +38,9 @@ const Home = () => {
                 </div>
 
                 <div className="actions">
+                    <Button type="submit" variant="contained" color="primary" onClick={() => createBotRoom()}>
+                        Play with Bot
+                    </Button>
                     <Button type="submit" variant="contained" color="primary" onClick={() => createRoomHandler()}>
                         Play with Friend
                     </Button>

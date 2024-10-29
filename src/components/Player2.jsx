@@ -5,11 +5,23 @@ import { useSockets } from '../context-providers/socket-hook'
 import { FaStar } from 'react-icons/fa6'
 import Waiting from './waiting/Waiting'
 
-const Player2 = () => {
-  const {room, option2} = useSockets()
-  const [score] = useState(2)
+const Player2 = ({result}) => {
+  const { room, option2, setOption2, enemyScore} = useSockets()
+  const [animate, setAnimate] = useState(false);
   
   let player2 = Object.values(room.players)[1]
+
+  useEffect(() => {
+    if(result.show){
+      setAnimate(true)
+    } else{
+      setAnimate(false)
+
+      setTimeout(() => {
+        setOption2("rock")
+      }, 1500)
+    }
+  }, [result])
   
   return (
     <div className='player_2'>
@@ -21,7 +33,7 @@ const Player2 = () => {
             <div className="score enemy">
               <div className="stars">
                 {[...Array(3).keys()].map((ele, index) =>
-                  index + 1 <= score ? (
+                  index + 1 <= enemyScore ? (
                     <FaStar key={index} color='red' size='3rem' />
                   ) : (
                     <FaStar key={index} color='white' size='3rem' />
@@ -34,7 +46,7 @@ const Player2 = () => {
               </div>
             </div>
 
-            <div className="enemyMove">
+            <div className={`yourMove enemyMove ${animate ? 'animate' : ''}`}>
               {option2 === 'rock' && (
                 <img src="/rock.png" alt="You" style={{...size, ...flip}} />
               )}
@@ -55,7 +67,7 @@ const Player2 = () => {
 export default Player2
 
 const size = {
-  width: '370px',
+  width: '23rem',
   marginLeft: '-22px'
 }
 

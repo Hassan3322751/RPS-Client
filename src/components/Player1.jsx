@@ -5,8 +5,21 @@ import { FaStar } from "react-icons/fa6";
 import { useSockets } from '../context-providers/socket-hook'
 
 const Player1 = ({result}) => {
-  const {option} = useSockets()
-  const [score, setScore] = useState(2)
+  const {option, setOption, score} = useSockets()
+  const [animate, setAnimate] = useState(true);
+
+  useEffect(() => {
+    if(result.show){
+      setAnimate(true)
+
+    } else{
+      setAnimate(false)
+
+      setTimeout(() => {
+        setOption("rock")
+      }, 1500)
+    }
+  }, [result])
   
   return (
     <div className='player_1'>
@@ -26,7 +39,7 @@ const Player1 = ({result}) => {
         </div>
       </div>
 
-      <div className="yourMove">
+      <div className={`yourMove ${animate ? 'animate' : ''}`}>
         {
           !option ? (
             <img src="/rock.png" alt="You" style={size} />
@@ -50,7 +63,7 @@ const Player1 = ({result}) => {
 export default Player1
 
 const size = {
-  width: '370px',
+  width: '23rem',
   marginLeft: '-22px'
 }
 

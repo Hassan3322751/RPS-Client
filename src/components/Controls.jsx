@@ -13,9 +13,7 @@ const Controls = () => {
   useEffect(() => {
     if(room.players[socket.id].optionLock){
       setOption(room.players[socket.id].option)
-    } else{
-      setOption("rock")
-    }
+    } 
   }, [room])
   
   const handleChange = (e) => {

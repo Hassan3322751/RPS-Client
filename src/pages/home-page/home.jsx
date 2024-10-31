@@ -9,24 +9,33 @@ const Home = () => {
     const navigate = useNavigate()
 
     const createRoomHandler = (e) => {
-        socket.emit("create:room", socket.id);
+        socket.emit("create:room", {roomId: socket.id, roomType: 'PUBLIC'});
+    };
+    const createRoomPrivate = (e) => {
+        socket.emit("create:room", {roomId: socket.id, roomType: 'PRIVATE'});
+        // navigate(`/privateRoom/${socket.id}`)
     };
 
     const createBotRoom = () => {
         navigate(`/botRoom`)
     }
 
-    useEffect(() => {
-        socket.on("connect", () => {
-            console.log("connected", socket.id);
-        });
+    // useEffect(() => {
+    //     socket.on("connect", () => {
+    //         console.log("connected", socket.id);
+    //     });
 
-        socket.on("room:get", (room) => {
-            setRoom(room)
-            navigate(`/room/${room.roomId}`)
-        });
+    //     socket.on("room:get", (room) => {
+    //         setRoom(room)
+
+    //         if(room.private){
+    //             navigate(`/privateRoom/${room.roomId}`)
+    //         } else{
+    //             navigate(`/room/${room.roomId}`)
+    //         }
+    //     });
         
-    }, []);
+    // }, []);
 
     return (
         <div className='home'>
@@ -41,7 +50,7 @@ const Home = () => {
                     <Button type="submit" variant="contained" color="primary" onClick={() => createBotRoom()}>
                         Play with Bot
                     </Button>
-                    <Button type="submit" variant="contained" color="primary" onClick={() => createRoomHandler()}>
+                    <Button type="submit" variant="contained" color="primary" onClick={() => createRoomPrivate()}>
                         Play with Friend
                     </Button>
                     <Button type="submit" variant="contained" color="primary" onClick={() => createRoomHandler()}>

@@ -5,21 +5,38 @@ import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-    const { socket, setRoom } = useSockets()
+    const { socket, room, setRoom } = useSockets()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        setRoom(null)
+    }, [])
 
     const createRoomHandler = (e) => {
         socket.emit("create:room", {roomId: socket.id, roomType: 'PUBLIC'});
     };
     const createRoomPrivate = (e) => {
         socket.emit("create:room", {roomId: socket.id, roomType: 'PRIVATE'});
-        // navigate(`/privateRoom/${socket.id}`)
     };
 
     const createBotRoom = () => {
         navigate(`/botRoom`)
     }
 
+    socket.on("room:get", (room) => {
+        setRoom(room)
+        console.log("room:get:  " + room)
+
+        if(room.private){
+            navigate(`/privateRoom/${room.roomId}`)
+        } else{
+            navigate(`/publicRoom/${room.roomId}`)
+        }
+        // if(!room.private){
+        //     navigate(`/room/${room.roomId}`)
+        // }
+    });
+    
     // useEffect(() => {
     //     socket.on("connect", () => {
     //         console.log("connected", socket.id);

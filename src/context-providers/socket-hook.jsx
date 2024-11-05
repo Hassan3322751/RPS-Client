@@ -9,7 +9,8 @@ export default function SocketsProvider({children}) {
 
     const socket = useMemo(
         () =>
-            io("http://localhost:3000", {
+            // io("http://localhost:3000", {
+            io("https://f0k6j112-3000.inc1.devtunnels.ms/", {
                 withCredentials: true,
             }),
         []
@@ -26,19 +27,19 @@ export default function SocketsProvider({children}) {
             console.log("connected", socket.id);
         });
 
-        socket.on("room:get", (room) => {
-            setRoom(room)
-            console.log(room)
+        // socket.on("room:get", (room) => {
+        //     setRoom(room)
+        //     console.log("room:get:  " + room)
 
-            if(room.private){
-                navigate(`/privateRoom/${room.roomId}`)
-            } else{
-                navigate(`/room/${room.roomId}`)
-            }
-            // if(!room.private){
-            //     navigate(`/room/${room.roomId}`)
-            // }
-        });
+        //     if(room.private){
+        //         navigate(`/privateRoom/${room.roomId}`)
+        //     } else{
+        //         navigate(`/publicRoom/${room.roomId}`)
+        //     }
+        //     // if(!room.private){
+        //     //     navigate(`/room/${room.roomId}`)
+        //     // }
+        // });
         
     }, []);
 

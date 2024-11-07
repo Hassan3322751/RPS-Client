@@ -2,6 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import Home from "./pages/home-page/home";
 import Game_Page from './pages/room-screen/room';
 
+import './app.scss'
+
 const App = () => {
   return (
       <Routes>

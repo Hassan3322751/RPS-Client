@@ -1,16 +1,14 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 
 const Sockets = createContext(null)
 
 export default function SocketsProvider({children}) {
-    const navigate = useNavigate()
 
     const socket = useMemo(
         () =>
             // io("http://localhost:3000", {
-            io("https://f0k6j112-3000.inc1.devtunnels.ms/", {
+            io("https://5qs267js-3000.inc1.devtunnels.ms", {
                 withCredentials: true,
             }),
         []

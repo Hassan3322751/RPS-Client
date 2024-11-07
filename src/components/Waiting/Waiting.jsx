@@ -1,5 +1,6 @@
-import React from 'react'
 import './waiting.scss'
+
+import redUser from "../../assets/redUser.svg"
 
 function Waiting() {
   let isPrivate = window.location.href.split("/")[3].includes('private')
@@ -8,14 +9,14 @@ function Waiting() {
       {
         isPrivate ? (
         <div className="waitingBody">
-          <img src="/redUser.png" alt="personIcon" className='personIcon' />
+          <img src={redUser} alt="personIcon" className='personIcon' />
           <b>{window.location.href + '?join=true'}</b>
         </div>
 
         ) : (
 
         <div className="waitingBody">
-          <img src="/redUser.png" alt="personIcon" className='personIcon' />
+          <img src={redUser} alt="personIcon" className='personIcon' />
           <b>Waiting for Opponent....</b>
         </div>
         )

@@ -16,8 +16,15 @@ function VoiceCall({ participantId }) {
     peerInstance.current = peer;
 
     // Get user media for audio
+    const audioConstraints = {
+      audio: {
+         echoCancellation: true,
+         noiseSuppression: true,
+         autoGainControl: true
+      }
+   };
     navigator.mediaDevices
-      .getUserMedia({ audio: true })
+      .getUserMedia(audioConstraints)
       .then((currentStream) => {
         setStream(currentStream);
  

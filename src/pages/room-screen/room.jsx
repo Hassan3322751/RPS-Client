@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import './room.scss';
 
 import { getWinner, updateRoom } from '../../configs/configs';
@@ -42,10 +42,14 @@ const Game = ({ roomType }) => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const toJoin = params.get('join');
-
+    
     if (isPrivate && toJoin) {
       socket.emit('create:room', { roomId, roomType });
     }
+
+    socket.on("room:unavailable", (data) => {
+      alert(data.message)
+    });
 
     socket.on('room:get', (receivedRoom) => {
       if (!receivedRoom) return;
@@ -78,6 +82,7 @@ const Game = ({ roomType }) => {
     return () => {
       socket.off('room:get');
       socket.off('connect');
+      socket.disconnect()
     };
   }, []);
 

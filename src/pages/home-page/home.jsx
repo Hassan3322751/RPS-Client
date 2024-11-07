@@ -1,22 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './home.scss'
 import { useSockets } from '../../context-providers/socket-hook'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-    const { socket, room, setRoom } = useSockets()
+    const { socket, setRoom, setScore, setEnemyScore } = useSockets()
     const navigate = useNavigate()
 
     useEffect(() => {
+        if (!socket.connected) {
+            socket.connect();
+            console.log('Socket reconnected.'); // Optional: Log reconnect status
+        }
         setRoom(null)
+        setScore(0)
+        setEnemyScore(0)
     }, [])
 
-    const createRoomHandler = (e) => {
-        socket.emit("create:room", {roomId: socket.id, roomType: 'PUBLIC'});
+    const createRoomHandler = () => {
+        socket.emit("create:room", {roomId: null, roomType: 'PUBLIC'});
     };
-    const createRoomPrivate = (e) => {
-        socket.emit("create:room", {roomId: socket.id, roomType: 'PRIVATE'});
+    const createRoomPrivate = () => {
+        socket.emit("create:room", {roomId: null, roomType: 'PRIVATE'});
     };
 
     const createBotRoom = () => {
@@ -25,34 +31,14 @@ const Home = () => {
 
     socket.on("room:get", (room) => {
         setRoom(room)
-        console.log("room:get:  " + room)
+        console.log(room)
 
         if(room.private){
             navigate(`/privateRoom/${room.roomId}`)
         } else{
             navigate(`/publicRoom/${room.roomId}`)
         }
-        // if(!room.private){
-        //     navigate(`/room/${room.roomId}`)
-        // }
     });
-    
-    // useEffect(() => {
-    //     socket.on("connect", () => {
-    //         console.log("connected", socket.id);
-    //     });
-
-    //     socket.on("room:get", (room) => {
-    //         setRoom(room)
-
-    //         if(room.private){
-    //             navigate(`/privateRoom/${room.roomId}`)
-    //         } else{
-    //             navigate(`/room/${room.roomId}`)
-    //         }
-    //     });
-        
-    // }, []);
 
     return (
         <div className='home'>

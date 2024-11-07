@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSockets } from '../context-providers/socket-hook'
 import { Button } from '@mui/material'
 
 import '../pages/room-screen/room.scss'
-import zIndex from '@mui/material/styles/zIndex'
 
 const Controls = () => {
   const {room, socket, setOption} = useSockets()
@@ -24,13 +23,13 @@ const Controls = () => {
 
   return (
     <>
-      <Button style={style} disabled={lockControls} onClick={(e) => handleChange('rock')}>
+      <Button style={style} disabled={lockControls} onClick={() => handleChange('rock')}>
         <img src="/rockButton.png" alt="rock" title='Rock' />
       </Button>
-      <Button style={style} disabled={lockControls} onClick={(e) => handleChange('paper')}>
+      <Button style={style} disabled={lockControls} onClick={() => handleChange('paper')}>
         <img src="/paperButton.png" alt="paper" title='Paper' />
       </Button>
-      <Button style={style} disabled={lockControls} onClick={(e) => handleChange('sessiors')}>
+      <Button style={style} disabled={lockControls} onClick={() => handleChange('sessiors')}>
         <img src="/scissorsButton.png" alt="scissor" title='Scissor' />
       </Button>
     </>

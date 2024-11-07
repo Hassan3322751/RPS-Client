@@ -47,13 +47,11 @@
 
 //-----------------------------  Player1 && Player2 Component Styling  ------------------------------
 .player_1{
-    border: 2px solid red;
     height: 100%;
     width: 50%;
 }
 
 .player_2{
-    border: 2px solid red;
     height: 100%;
     width: 50%;
 }
@@ -112,5 +110,22 @@
 .stars{
     img{
         width: 3.2rem;
+    }
+}
+
+@media (max-width: 422px) {
+    .game-body{
+        width: 100vw;
+        border-radius: 1.4rem;
+    }
+
+    .score div {
+        margin: 0.63rem 1.4rem;
+    }
+}
+
+@media (max-width: 378px) {
+    .score div {
+        margin: 0.63rem .4rem;
     }
 }

@@ -7,7 +7,7 @@ export default function SocketsProvider({children}) {
 
     const socket = useMemo(
         () =>
-            io(import.meta.env.VITE_API_BASE_URL, {
+            io(import.meta.env.VITE_API_BASE_URL,  {
                 withCredentials: true,
                 transports: ['websocket', 'polling']
             }),

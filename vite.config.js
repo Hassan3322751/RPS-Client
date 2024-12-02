@@ -8,5 +8,8 @@ export default defineConfig({
   },
   esbuild: {
     target: 'esnext', // Ensures modern syntax compatibility
+  },  
+  build: {
+    outDir: 'dist'
   }
 });

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import '../pages/room-screen/room.scss';
 import { useSockets } from '../context-providers/socket-hook';
 import { FaStar } from 'react-icons/fa6';
-import Waiting from './waiting/Waiting';
+import Waiting from './waiting/Waiting.jsx';
 
 import paperSvg from '../assets/paper.svg'
 import rockSvg from '../assets/rock.svg'
@@ -10,9 +10,12 @@ import scissorSvg from '../assets/scissor.svg'
 import redUser from "../assets/redUser.svg"
 
 const Player2 = ({ result }) => {
-  const { room, option2, enemyScore } = useSockets();
+  const { room, option2, setScore, enemyScore, setEnemyScore } = useSockets();
   const [animate, setAnimate] = useState(false);
   const player2 = Object.values(room.players)[1];
+
+  !player2 && setScore(0)
+  !player2 && setEnemyScore(0)
 
   useEffect(() => {
     setAnimate(result.showResult);

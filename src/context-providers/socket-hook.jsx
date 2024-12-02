@@ -7,8 +7,7 @@ export default function SocketsProvider({children}) {
 
     const socket = useMemo(
         () =>
-            // io("http://localhost:3000", {
-            io("https://5qs267js-3000.inc1.devtunnels.ms", {
+            io(import.meta.env.VITE_API_BASE_URL, {
                 withCredentials: true,
             }),
         []
@@ -24,6 +23,11 @@ export default function SocketsProvider({children}) {
         socket.on("connect", () => {
             console.log("connected", socket.id);
         });
+
+        socket.on("disconnect", () => {
+            setScore(0)
+            setEnemyScore(0)
+        })
 
         // socket.on("room:get", (room) => {
         //     setRoom(room)

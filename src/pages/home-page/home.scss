@@ -34,9 +34,20 @@
     .actions{
         button{
             display: block;
-            background-color: #690B99;
-            border: 2px solid #FEFE06;
             margin: 5px 0px ;
+
+            background: url(/src/assets/button19.png);
+    background-position: center;
+    background-size: auto;
+
+    // width: 189px;
+    height: 60px;
+    font-size: 1.02rem;
+    font-family: bungee, system-ui;
+    color: #a8f961;
+    border: 3px solid greenyellow;
+    clip-path: polygon(0% 15%, 100% 0%, 90% 100%, 10% 100%);
+    padding: 0px 25px;
         }
     }
 }

@@ -1,0 +1,47 @@
+
+.container{
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 500px;
+    height: 500px;
+}
+
+.controls{
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-wrapper{
+    width: 180px;
+    height: 56px;
+}
+
+.button{
+    background: url(/src/assets/button16.png);
+    background-size: auto;
+    background-position: center;
+    height: -webkit-fill-available;
+    height: 100%;
+    /* width: 223px;
+    height: 75px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 27px;
+    font-weight: bold;
+    font-family: 'Bungee', system-ui;
+    color: chartreuse;
+    border: 4px solid greenyellow;      
+}
+
+.button:focus{
+    box-shadow: inset 1px 1px 7px 10px chartreuse;
+    border-radius: 12px;
+    opacity: 0.9;
+}

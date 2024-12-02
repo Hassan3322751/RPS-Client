@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import '../pages/room-screen/room.scss';
 import { useSockets } from '../context-providers/socket-hook';
 import { FaStar } from 'react-icons/fa6';
-import Waiting from './waiting/Waiting.jsx';
+import Waiting from './Waiting/Waiting.jsx';
 
 import paperSvg from '../assets/paper.svg'
 import rockSvg from '../assets/rock.svg'

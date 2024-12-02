@@ -9,6 +9,7 @@ export default function SocketsProvider({children}) {
         () =>
             io(import.meta.env.VITE_API_BASE_URL, {
                 withCredentials: true,
+                transports: ['websocket', 'polling']
             }),
         []
     );

@@ -5,6 +5,7 @@ const Sockets = createContext(null)
 
 export default function SocketsProvider({children}) {
 
+    console.log(import.meta.env.VITE_API_BASE_URL)
     const socket = useMemo(
         () =>
             io(import.meta.env.VITE_API_BASE_URL,  {
